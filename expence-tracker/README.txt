@@ -12,4 +12,4 @@ The SQL data can be used to analyze expenses and create analytics dashboards on 
 
 3. Create a AI code to generate queries that can analyse the expences and create charts based on the data in the tables
 
-4. As always keep improving the design so that can be more convinient to use it.
+4. As always keep improving the design so that it can be more convinient to use.
