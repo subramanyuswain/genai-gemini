@@ -6,6 +6,7 @@ from PIL import Image
 import base64
 from dotenv import load_dotenv
 from methods import *
+from bill_metadata import execute_bill_metadata
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -49,7 +50,7 @@ def generate_sql_query(image):
     
     image_bytes = image_to_bytes(image)
 
-    prompt = get_create_insert_query_promt()
+    prompt = generate_item_insert_query_promt()
     
 
     try:
@@ -69,6 +70,7 @@ def main():
 
         if st.button("Generate SQL Query"):
             sql_query = generate_sql_query(image)
+            sql_query += "\n" + execute_bill_metadata(image, st)
             st.text_area("Generated SQL Query", value=sql_query, height=200)
             if sql_query=="Could not extract data from image":
                 st.error("Could not extract data from image. Try another one")
